@@ -5,7 +5,7 @@ Jolt utilizes offline memory checking in the Bytecode prover, Lookup prover (for
 
 (The term "offline memory checking" refers to techniques that check the correctness of all read operations "all at once", after the reads have all occurred--or in SNARK settings, after the purported values returned by the reads have been committed. Off-line checking techniques do not determine as _a read happens_ whether or not it was correct. They only ascertain, when all the reads are checked at once, whether or not all of the reads were correct. 
 
-This is in contrast to "online memory checking" techniques like Merkle hashing that immediately confirm that a memory read was done correctly by insisting that each read includes an authentication path. Merkle hashing is much more expensive on a per-read basis for SNARK provers, and offline memory checking suffices for SNARK design. This is why Lasso and Jolt use offline memory checking techniques rather than online). 
+This is in contrast to "online memory checking" techniques like Merkle hashing that immediately confirms that a memory read was done correctly by insisting that each read includes an authentication path. Merkle hashing is much more expensive on a per-read basis for SNARK provers, and offline memory checking suffices for SNARK design. This is why Lasso and Jolt use offline memory checking techniques rather than online). 
 
 ## Initialization Algorithm
 ### `TODO`: 
@@ -20,7 +20,7 @@ $$
 $$
 init, final \subseteq \{(a_i, v_i, t_i) \,|\, i \in [0, M]\}
 $$
-Here, $a_i$, $v_i$, and $t_i$ represent the address, value, and timestamp respectively, with $m$ being the total number of memory operations and $M$ the size of the RAM.
+Here, $a_i$, $v_i$, and $t_i$ represent the address, value, and timestamp respectively, with $m$ being the total number of memory operations and $M$ being the size of the RAM.
 
 The verifier checks that the combination of $read$ and $final$ matches $write$ and $init$, disregarding the sequence of elements, known as a permutation check:
 $$
