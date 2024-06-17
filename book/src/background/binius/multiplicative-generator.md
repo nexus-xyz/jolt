@@ -27,7 +27,7 @@ This algorithm ensures that the element $x$ does not reside in any proper subgro
 # Maximal Proper Divisors
 A maximal proper divisor of a number $n$ is a divisor $d$ of $n$ which is neither $1$ nor $n$ itself, and there are no other divisors of $n$ that divide $d$ except $1$ and $d$. Essentially, $d$ is a divisor that is not a multiple of any smaller divisor other than $1$ and itself, making it 'maximal' under the set of proper divisors.
 ## Algorithm for Finding
-The algorithm to find the maximal proper divisors of a given number $n$ involves identifying all divisors of $n$ and then selecting those which do not have other divisors besides $1$ and themselves. The steps are as follows:
+The algorithm to find the maximal proper divisors of a given number $n$ involves identifying all divisors of $n$ and then selecting those that do not have other divisors besides $1$ and themselves. The steps are as follows:
 1. **Find All Divisors**: First, list all divisors of $n$ by checking for every integer $i$ from $1$ to $\sqrt{n}$ if $i$ divides $n$. If $i$ divides $n$, then both $i$ and $n/i$ are divisors.
 2. **Filter Maximal Divisors**: From this list of divisors, exclude $1$ and $n$. For each remaining divisor, check if it can be expressed as a multiple of any other divisor from the list (other than $1$ and itself). If it cannot, then it is a maximal proper divisor.
 
