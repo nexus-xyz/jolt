@@ -43,10 +43,11 @@ fn create_project(name: String) {
 }
 
 fn install_toolchain() {
-    if let Err(err) = toolchain::install_toolchain() {
-        panic!("toolchain install failed: {}", err);
-    }
-    display_welcome();
+    panic!("toolchain installation unsupported");
+    //if let Err(err) = toolchain::install_toolchain() {
+    //    panic!("toolchain install failed: {}", err);
+    //}
+    //display_welcome();
 }
 
 fn create_folder_structure(name: &str) -> Result<()> {
