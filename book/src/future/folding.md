@@ -3,7 +3,7 @@
 The plan to implement folding is simple, with a (very) sketchy overview provided below. 
 
 <OL>
-  <LI> Verifying Jolt proofs involves two procedures: verifiying sum-check proofs, and folding 
+  <LI> Verifying Jolt proofs involves two procedures: verifying sum-check proofs, and folding 
 polynomial evaluation claims for committed polynomials. </LI>
 
 <LI> Running Nova with BN254 as the primary curve, we can simply verify sum-check proofs natively. </LI>
@@ -13,7 +13,7 @@ linear claims about committed vectors. This requires one scalar multiplication i
 We can offload that to Grumpkin via the technique from Cyclefold, or do it non-natively 
 if the rest of the circuit is for verifying sum-check proofs dominates the size of the recursive constraint system regardless. </LI>
 
-<LI> There are some nuisances as to how to incorporate offline memory-checking techniques with folding,
+<LI> There are some nuances as to how to incorporate offline memory-checking techniques with folding,
   and in particular to make sure that the state of the VM's memory at the end 
 of shard $i$ matches the state of memory at the start of shard $i+1$. These are not terribly difficult to address,
 and the details will be fully fleshed out in an upcoming e-print.</LI>
@@ -21,7 +21,7 @@ and the details will be fully fleshed out in an upcoming e-print.</LI>
 </OL>
 
 Note that this plan does not require "non-uniform folding". The fact that there are many different primitive RISC-V 
-instructions is handled by "monolithic Jolt". Folding is merely applied to accumluate many copies of the same claim,
+instructions is handled by "monolithic Jolt". Folding is merely applied to accumulate many copies of the same claim,
 namely that a Jolt proof (minus any HyperKZG evaluation proof) was correctly verified. 
 
 # Space cost estimates
