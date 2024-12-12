@@ -8,7 +8,7 @@ We call directly representing the Jolt verifier (with HyperKZG polynomial commit
 as constraints to then feeding those constraints into Groth16 "naive composition". Unfortunately, this naive procedure
 will result 
 in over a hundred millions of constraints. Applying Groth16 
-to such a large constraint system will result in far more latency than we'd lik, (and may even be impossible over the BN254 scalar field
+to such a large constraint system will result in far more latency than we'd like (and may even be impossible over the BN254 scalar field
 because that field only supports FFTs of length $2^{27}$. 
 Below, we describe alternate ways forward. 
 
@@ -22,7 +22,7 @@ are now in progress).
 Each scalar multiplication costs about 400 group operations, each of which costs about 10 field multiplications,
 so that's about $150 \cdot 400 \cdot 10=600k$ field multiplications.
 The real killer is that these field multiplications must be done non-natively in constraints, due to the fact
-that that BN254 does not have a pairing-friendly  "sister curve" (i.e., a curve whose scalar field matches the BN254 base field).
+that BN254 does not have a pairing-friendly  "sister curve" (i.e., a curve whose scalar field matches the BN254 base field).
 This means that each of the $600k$ field multiplications costs thousands of constraints. 
 
 On top of the above, the two pairings done by the HyperKZG verifier, implemented non-natively in constraints, 
@@ -49,7 +49,7 @@ The field operations done by the Jolt verifier in the various invocations of the
 We further expect upcoming advances in 
 methods for addressing non-native field arithmetic (and/or more careful optimizations of the Jolt verifier) to bring this down to under 2 million constraints. 
 
-But the Spartan proof is still too big to post on-chain. So, second, represent the Spartan verifier as an R1CS instance over the BN254 scalar field, and apply Groth16 to this R1CS. This the proof
+But the Spartan proof is still too big to post on-chain. So, second, represent the Spartan verifier as an R1CS instance over the BN254 scalar field, and apply Groth16 to this R1CS. This is the proof
 posted and verified on-chain. 
 
 The Spartan verifier only does at most a couple of hundred field operations (since there's only two sum-check invocations in Spartan, and the second sum-check invocation can be especially tiny for highly uniform constraint systems) and $2 \cdot \sqrt{n}$ scalar multiplications where $n$ is the number of columns (i.e., witness variables) in the R1CS instance.
@@ -63,7 +63,7 @@ The calculation above is slightly delicate, because running Groth16 on 6 million
 ## Details of the Jolt-with-HyperKZG verifier
 The easiest way to understand the workload of the verifier circuit is to jump through the codebase starting at `vm/mod.rs Jolt::verify(...)`.  Verification can be split into 4 logical modules: [instruction lookups](https://jolt.a16zcrypto.com/how/instruction_lookups.html), [read-write memory](https://jolt.a16zcrypto.com/how/read_write_memory.html), [bytecode](https://jolt.a16zcrypto.com/how/bytecode.html), [r1cs](https://jolt.a16zcrypto.com/how/r1cs_constraints.html).
 
-Each of the modules do some combination of the following:
+Each of the modules does some combination of the following:
 - [Sumcheck verification](https://jolt.a16zcrypto.com/background/sumcheck.html)
 - Polynomial opening proof verification
 - Multi-linear extension evaluations
@@ -97,7 +97,7 @@ There are two difficult MLEs to evaluate:
 - $\widetilde{A}, \widetilde{B}, \widetilde{C}$  – evaluations of the R1CS coefficient
 - $\widetilde{z}$ – evaluation of the witness vector 
 
-> The sections below are under-described in the wiki. We'll flush these out shortly. Assume this step comes last.
+> The sections below are under-described in the wiki. We'll flesh these out shortly. Assume this step comes last.
 
 For $\widetilde{A}, \widetilde{B}, \widetilde{C}$ we must leverage the uniformity to efficiently evaluate. This is under-described in the wiki, but we'll get to it ASAP.
 
